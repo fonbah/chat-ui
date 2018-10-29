@@ -68,11 +68,11 @@ const InputPanel = styled.div`
   border-top: 1px solid #fafafa;
 `
 
-const ChatroomImage = styled.img`
-  position: absolute;
-  top: 0;
-  width: 100%;
-`
+// const ChatroomImage = styled.img`
+//   position: absolute;
+//   top: 0;
+//   width: 100%;
+// `
 
 const Scrollable = styled.div`
   height: 100%;
@@ -162,10 +162,10 @@ export default class Chatroom extends React.Component {
               onClick={this.props.onLeave}
             />
           </Header>
-          <ChatroomImage
+          {/* <ChatroomImage
             src={this.props.chatroom.image}
             alt=""
-          />
+          /> */}
           <ChatPanel>
             <Scrollable innerRef={(panel) => { this.panel = panel; }}>
               <List>

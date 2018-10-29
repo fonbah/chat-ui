@@ -32,12 +32,12 @@ const Content = styled.div`
   height: 100%;
 `
 
-const BackgroundImage = styled.div`
-  background: url(${props => props.src}) no-repeat center center fixed;
-  background-size: cover;
-  height: 100%;
-  overflow: hidden;
-`
+// const BackgroundImage = styled.div`
+//   background: url(${props => props.src}) no-repeat center center fixed;
+//   background-size: cover;
+//   height: 100%;
+//   overflow: hidden;
+// `
 
 const AvatarWrapper = styled.div`
 cursor: pointer;
@@ -106,10 +106,10 @@ export default ({ children, user }) => (
       </Center>
     </ContentWrapper>
     <FullScreen>
-      <BackgroundImage src="background.jpg" />
+      {/* <BackgroundImage src="background.jpg" /> */}
       <Overlay
         opacity={0.4}
-        background="#212121"
+        //background="#212121"
       />
     </FullScreen>
   </FullScreen>

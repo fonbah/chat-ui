@@ -7,7 +7,6 @@ import { Card, CardMedia, CardTitle } from 'material-ui/Card';
 const Wrapper = styled.div`
   cursor: pointer;
 `
-
 const getCardTitleStyle = () => ({
   display: 'flex',
   alignItems: 'center'
@@ -28,7 +27,8 @@ export default ({ chatroom, onEnter }) => (
             />
           }
         >
-          <img height="100%" src={chatroom.image} alt="" />
+          {/* <img height="100%" src={chatroom.image} alt="" /> */}
+          <div style={{ width: '250px', height: '100px' }}></div>
         </CardMedia>
       </Card>
     </Wrapper>

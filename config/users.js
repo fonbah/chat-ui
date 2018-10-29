@@ -1,24 +1,24 @@
 module.exports = [
   {
-    name: 'Rick',
-    lastName: 'Grimes',
+    name: 'Nikolay',
+    lastName: '',
     statusText: 'I am the leader!',
     image: 'users/rick.jpg'
   },
   {
-    name: 'Daryl',
-    lastName: 'Dixon',
+    name: 'Dmitriy',
+    lastName: '',
     statusText: 'I like smashing Walkers.',
     image: 'users/daryl.jpg'
   },
   {
-    name: 'Carol',
-    lastName: 'Peletier',
+    name: 'Elena',
+    lastName: '',
     statusText: 'Don\'t mess with me!',
     image: 'users/carol.jpg'
   },
   {
-    name: 'Negan',
+    name: 'Peter',
     lastName: '',
     statusText: 'In a relationship with Lucille.',
     image: 'users/negan.jpeg'

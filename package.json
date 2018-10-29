@@ -5,6 +5,7 @@
   "scripts": {
     "server": "node ./server/server.js",
 	"client": "webpack-dev-server",
+	"build": "webpack",
     "vagrant": "webpack-dev-server --host 0.0.0.0 --public 10.0.2.15:8080 --watch-poll"
   },
   "license": "MIT",
