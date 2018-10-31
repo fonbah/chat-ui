@@ -5,8 +5,9 @@ import TextField from 'material-ui/TextField';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import FontIcon from 'material-ui/FontIcon';
 import Avatar from 'material-ui/Avatar';
-import Divider from 'material-ui/Divider';
+//import Divider from 'material-ui/Divider';
 import { List, ListItem } from 'material-ui/List';
+import { ChatFeed, Message } from 'react-chat-ui';
 
 import Overlay from './Overlay';
 
@@ -130,24 +131,103 @@ export default class Chatroom extends React.Component {
 
   onMessageReceived(entry) {
     console.log('onMessageReceived:', entry)
+    //this.updateChatHistory(this.state)
     this.updateChatHistory(entry)
   }
 
   updateChatHistory(entry) {
-    this.setState({ chatHistory: this.state.chatHistory.concat(entry) })
+
+    console.log('entry', entry)
+
+    this.setState({
+      chatHistory: this.state.chatHistory.concat({
+        message: entry.message,
+        user: entry.user
+      })
+    })
   }
 
   scrollChatToBottom() {
-    this.panel.scrollTo(0, this.panel.scrollHeight)
+    //this.panel.scrollTo(0, this.panel.scrollHeight)
   }
 
   render() {
     return (
-      <div style={{ height: '100%' }}>
-        <ChatWindow>
-          <Header>
+
+      <div>
+
+        <div>
+          <RaisedButton
+            style={{ float: 'right' }}
+            primary
+            icon={
+              <FontIcon
+                style={{ fontSize: 24 }}
+                className="material-icons"
+              >
+                {'close'}
+              </FontIcon>
+            }
+            onClick={this.props.onLeave}
+          />
+          <ChatFeed
+            messages={this.state.chatHistory.map(item => {
+              return new Message({
+                id: Date.now() + Math.random(),
+                message: item.message || item.event,
+                senderName: item.user ? item.user.name : null
+              })
+            })} // Boolean: list of message objects
+            //isTyping={this.state.is_typing} // Boolean: is the recipient typing
+            hasInputField={false} // Boolean: use our input, or use your own
+            showSenderName={true} // show the name of the user who sent the message
+            bubblesCentered={false} //Boolean should the bubbles be centered in the feed?
+            // JSON: Custom bubble styles
+            bubbleStyles={
+              {
+                text: {
+                  fontSize: 20
+                },
+                chatbubble: {
+                  borderRadius: 30,
+                  padding: 20
+                }
+              }
+            }
+          />
+
+          <InputPanel>
+            <TextField
+              // textareaStyle={{ color: '#fafafa' }}
+              // hintStyle={{ color: '#fafafa' }}
+              // floatingLabelStyle={{ color: '#fafafa' }}
+              hintText="Enter a message."
+              floatingLabelText="Enter a message."
+              multiLine
+              rows={4}
+              rowsMax={4}
+              onChange={this.onInput}
+              value={this.state.input}
+              onKeyPress={e => (e.key === 'Enter' ? this.onSendMessage() : null)}
+            />
+            <FloatingActionButton
+              onClick={this.onSendMessage}
+              style={{ marginLeft: 20 }}
+            >
+              <FontIcon
+                style={{ fontSize: 32 }}
+                className="material-icons"
+              >
+                {'chat_bubble_outline'}
+              </FontIcon>
+            </FloatingActionButton>
+          </InputPanel>
+        </div>
+
+        {/* <ChatWindow> */}
+        {/* <Header>
             <Title>
-              { this.props.chatroom.name }
+              {this.props.chatroom.name}
             </Title>
             <RaisedButton
               primary
@@ -161,38 +241,39 @@ export default class Chatroom extends React.Component {
               }
               onClick={this.props.onLeave}
             />
-          </Header>
-          {/* <ChatroomImage
+          </Header> */}
+        {/* <ChatroomImage
             src={this.props.chatroom.image}
             alt=""
           /> */}
-          <ChatPanel>
-            <Scrollable innerRef={(panel) => { this.panel = panel; }}>
+        {/* <ChatPanel> */}
+
+        {/* {<Scrollable innerRef={(panel) => { this.panel = panel; }}>
               <List>
                 {
-                  this.state.chatHistory.map(
-                    ({ user, message, event }, i) => [
-                      <NoDots>
-                        <ListItem
-                          key={i}
-                          style={{ color: '#fafafa' }}
-                          leftAvatar={<Avatar src={user.image} />}
-                          primaryText={`${user.name} ${event || ''}`}
-                          secondaryText={
-                            message &&
-                            <OutputText>
-                              { message }
-                            </OutputText>
-                          }
-                        />
-                      </NoDots>,
-                      <Divider inset />
-                    ]
-                  )
+                  // this.state.chatHistory.map(
+                  //   ({ user, message, event }, i) => [
+                  //     // <NoDots>
+                  //       <ListItem
+                  //         key={i}
+                  //         // style={{ color: '#fafafa' }}
+                  //         // leftAvatar={<Avatar src={user.image} />}
+                  //         // primaryText={`${user.name} ${event || ''}`}
+                  //         // secondaryText={
+                  //         //   message &&
+                  //         //   <OutputText>
+                  //         //     { message }
+                  //         //   </OutputText>
+                  //         // }
+                  //       />
+                  //     // </NoDots>,
+                  //     // <Divider inset />
+                  //   ]
+                  // )
                 }
               </List>
-            </Scrollable>
-            <InputPanel>
+            </Scrollable>} */}
+        {/* <InputPanel>
               <TextField
                 textareaStyle={{ color: '#fafafa' }}
                 hintStyle={{ color: '#fafafa' }}
@@ -218,12 +299,12 @@ export default class Chatroom extends React.Component {
                 </FontIcon>
               </FloatingActionButton>
             </InputPanel>
-          </ChatPanel>
-          <Overlay
-            opacity={0.6}
-            background="#111111"
-          />
-        </ChatWindow>
+          </ChatPanel> */}
+        {/* <Overlay
+            //opacity={0.6}
+            //background="#111111"
+          /> */}
+        {/* </ChatWindow> */}
       </div>
     )
   }

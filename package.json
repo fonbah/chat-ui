@@ -4,8 +4,8 @@
   "description": "Example group chat app built with socket.io and react.",
   "scripts": {
     "server": "node ./server/server.js",
-	"client": "webpack-dev-server",
-	"build": "webpack",
+    "client": "webpack-dev-server",
+    "build": "webpack",
     "vagrant": "webpack-dev-server --host 0.0.0.0 --public 10.0.2.15:8080 --watch-poll"
   },
   "license": "MIT",
@@ -16,6 +16,7 @@
     "babel-preset-react": "^6.24.1",
     "material-ui": "^0.20.0",
     "react": "^16.2.0",
+    "react-chat-ui": "^0.3.2",
     "react-dom": "^16.2.0",
     "react-hot-loader": "^3.1.3",
     "react-router-dom": "^4.2.2",
