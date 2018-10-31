@@ -1,7 +1,7 @@
 const io = require('socket.io-client')
 
 export default function () {
-  const socket = io.connect('http://localhost:3330') //change to 3000 for local env
+  const socket = io.connect('http://localhost:3002') //change to actual server port
 
   function registerHandler(onMessageReceived) {
     socket.on('message', onMessageReceived)
